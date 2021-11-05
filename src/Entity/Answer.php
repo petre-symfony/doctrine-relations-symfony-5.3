@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=AnswerRepository::class)
  */
 class Answer {
+	use TimestampableEntity;
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue
@@ -29,7 +31,7 @@ class Answer {
 	/**
 	 * @ORM\Column(type="integer")
 	 */
-	private $votes;
+	private $votes = 0;
 
 	public function getId(): ?int {
 		return $this->id;
