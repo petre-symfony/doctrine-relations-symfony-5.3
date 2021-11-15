@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,10 +44,13 @@ class QuestionController extends AbstractController {
 	/**
 	 * @Route("/questions/{slug}", name="app_question_show")
 	 */
-	public function show(Question $question) {
+	public function show(Question $question, AnswerRepository $repository) {
 		if ($this->isDebug) {
 			$this->logger->info('We are in debug mode!');
 		}
+
+		$answers = $repository->findBy(['question' => $question]);
+		dd($answers);
 
 		$answers = [
 			'Make sure your cat is sitting `purrrfectly` still 🤣',
