@@ -26,37 +26,31 @@ use Zenstruck\Foundry\Proxy;
  * @method static AnswerRepository|RepositoryProxy repository()
  * @method Answer|Proxy create(array|callable $attributes = [])
  */
-final class AnswerFactory extends ModelFactory
-{
-    public function __construct()
-    {
-        parent::__construct();
+final class AnswerFactory extends ModelFactory {
+	public function __construct() {
+		parent::__construct();
 
-        // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
-    }
+		// TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
+	}
 
-    protected function getDefaults(): array
-    {
-        return [
-            // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'content' => self::faker()->text(),
-            'username' => self::faker()->userName(),
-            'votes' => self::faker()->numberBetween(-20, 50),
-            'createdAt' => self::faker()->dateTimeBetween('-1 year'),
-					  'question' => QuestionFactory::random()
-        ];
-    }
+	protected function getDefaults(): array {
+		return [
+			// TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
+			'content' => self::faker()->text(),
+			'username' => self::faker()->userName(),
+			'votes' => self::faker()->numberBetween(-20, 50),
+			'createdAt' => self::faker()->dateTimeBetween('-1 year'),
+			'question' => QuestionFactory::random()
+		];
+	}
 
-    protected function initialize(): self
-    {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-            // ->afterInstantiate(function(Answer $answer) {})
-        ;
-    }
+	protected function initialize(): self {
+		// see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
+		return $this// ->afterInstantiate(function(Answer $answer) {})
+			;
+	}
 
-    protected static function getClass(): string
-    {
-        return Answer::class;
-    }
+	protected static function getClass(): string {
+		return Answer::class;
+	}
 }
