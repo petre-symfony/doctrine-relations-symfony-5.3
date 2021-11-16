@@ -140,7 +140,7 @@ class Question {
 	public function addAnswer(Answer $answer): self {
 		if (!$this->answers->contains($answer)) {
 			$this->answers[] = $answer;
-			//$answer->setQuestion($this);
+			$answer->setQuestion($this);
 		}
 
 		return $this;
