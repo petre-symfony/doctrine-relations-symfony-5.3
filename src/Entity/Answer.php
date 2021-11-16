@@ -11,6 +11,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  */
 class Answer {
 	use TimestampableEntity;
+
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue
@@ -38,6 +39,11 @@ class Answer {
 	 * @ORM\JoinColumn(nullable=false)
 	 */
 	private $question;
+
+	/**
+	 * @ORM\Column(type="string", length=15)
+	 */
+	private $status;
 
 	public function getId(): ?int {
 		return $this->id;
@@ -79,6 +85,16 @@ class Answer {
 
 	public function setQuestion(?Question $question): self {
 		$this->question = $question;
+
+		return $this;
+	}
+
+	public function getStatus(): ?string {
+		return $this->status;
+	}
+
+	public function setStatus(string $status): self {
+		$this->status = $status;
 
 		return $this;
 	}
