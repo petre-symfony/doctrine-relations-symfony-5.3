@@ -15,9 +15,11 @@ class AppFixtures extends Fixture {
 	public function load(ObjectManager $manager) {
 	  TagFactory::createMany(100);
 
-		$questions = QuestionFactory::createMany(20, [
-		  'tags' => TagFactory::randomRange(0, 5)
-    ]);
+		$questions = QuestionFactory::createMany(20, function() {
+		  return [
+		    'tags' => TagFactory::randomRange(0, 5)
+      ];
+		});
 
 		QuestionFactory::new()
 			->unpublished()
