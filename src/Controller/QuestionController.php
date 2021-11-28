@@ -6,6 +6,7 @@ use App\Entity\Question;
 use App\Repository\QuestionRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Pagerfanta\Pagerfanta;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,7 @@ class QuestionController extends AbstractController {
 	 * @Route("/", name="app_homepage")
 	 */
 	public function homepage(QuestionRepository $repository) {
-		$questions = $repository->findAllAskedOrderedByNewest();
+    $questions = $repository->findAllAskedOrderedByNewest();
 
 		return $this->render('question/homepage.html.twig', [
 			'questions' => $questions,

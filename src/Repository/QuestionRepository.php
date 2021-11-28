@@ -27,8 +27,8 @@ class QuestionRepository extends ServiceEntityRepository {
       ->leftJoin('q.questionTags', 'question_tag')
       ->innerJoin('question_tag.tag', 'tag')
       ->addSelect('question_tag', 'tag')
-			->getQuery()
-			->getResult();
+      ->getQuery()
+      ->getResult();
 	}
 
 	private function addIsAskedQueryBuilder(QueryBuilder $qb = null): QueryBuilder {
