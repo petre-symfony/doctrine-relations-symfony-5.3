@@ -27,7 +27,9 @@ class QuestionController extends AbstractController {
 	 * @Route("/", name="app_homepage")
 	 */
 	public function homepage(QuestionRepository $repository) {
-    $questions = $repository->findAllAskedOrderedByNewest();
+    $queryBuilder = $repository->createAskedOrderedByNewestQueryBuilder();
+
+    $pagerfanta = new Pagerfanta(new QueryAdapter);
 
 		return $this->render('question/homepage.html.twig', [
 			'questions' => $questions,
