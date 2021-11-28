@@ -18,7 +18,7 @@ class AppFixtures extends Fixture {
 
 		$questions = QuestionFactory::createMany(20, function() {
 		  return [
-		    'questionTags' => QuestionTagFactory::randomRange(0, 5)
+		    'questionTags' => QuestionTagFactory::new()
       ];
 		});
 
