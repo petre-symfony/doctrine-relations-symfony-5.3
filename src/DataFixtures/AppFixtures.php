@@ -16,15 +16,14 @@ class AppFixtures extends Fixture {
 	public function load(ObjectManager $manager) {
 	  TagFactory::createMany(100);
 
-		$questions = QuestionFactory::createMany(20, function() {
+		$questions = QuestionFactory::createMany(20);
+
+		QuestionTagFactory::createMany(100, function() {
 		  return [
-		    'questionTags' => QuestionTagFactory::new(function(){
-		      return [
-		        'tag' => TagFactory::random()
-          ];
-        })->many(1,5)
+        'tag' => TagFactory::random(),
+        'question' => QuestionFactory::random()
       ];
-		});
+    });
 
 		QuestionFactory::new()
 			->unpublished()
